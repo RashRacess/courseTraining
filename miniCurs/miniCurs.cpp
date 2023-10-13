@@ -7,9 +7,9 @@
 int main() {
 	system("chcp 65001");
 	cout << "Users:" << endl;
-	User pidor("artem", "12345", "admin");
+	User dima("dima", "12345", "admin");
 	Tree derevo;
-	derevo.InsertNode(&pidor);
+	derevo.InsertNode(&dima);
 	derevo.ShowTree();
 
 	cout << endl << endl << endl;
