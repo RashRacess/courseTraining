@@ -1,0 +1,61 @@
+#pragma once
+#include "User.h"
+
+class Node {
+public:
+	Node* left;
+	Node* right;
+	string _lastname;
+	Node(string lastname) : _lastname{ lastname } {}
+	~Node() {}
+};
+
+
+class Tree {
+private:
+
+	static void Insert(Node*& node, string lastname) {
+		if (node == nullptr) {
+			node = new Node(lastname);
+		}
+
+		else {
+			if (lastname < node->_lastname)
+				Insert(node->left, lastname);
+			else if (lastname > node->_lastname)
+				Insert(node->right, lastname);
+		}
+	}
+
+	static void Show(Node*& node) {
+		if (node) {
+			cout << node->_lastname << endl;
+			Show(node->left);
+			Show(node->right);
+		}
+	}
+
+	static bool Search(Node*& node, string stringSearch) {
+		if (node) {
+			if (node->_lastname == stringSearch)
+				return true;
+			Search(node->left, stringSearch);
+			Search(node->right, stringSearch);
+		}
+		return false;
+	}
+
+	Node* root = nullptr;
+public:
+	void Insert(string lastname) {
+		Insert(root, lastname);
+	}
+
+	void Show() {
+		Show(root);
+	}
+
+	bool Search(string stringSearch) {
+		return Search(root, stringSearch);
+	}
+};

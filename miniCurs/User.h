@@ -12,8 +12,8 @@ private:
 	string _password;
 	string _role;
 public:
-	
-	User() : _nick{ "unknown" }, _password{ "unknown" }, _role{"unknown"} {}
+
+	User() : _nick{ "unknown" }, _password{ "unknown" }, _role{ "unknown" } {}
 
 	User(string nick, string password, string role) {
 		this->_nick = nick;
@@ -38,11 +38,23 @@ public:
 		return *this;
 	}
 
+	bool operator>(const User& other) const {
+		return _nick > other._nick;
+	}
+
+	bool operator<(const User& other) const {
+		return _nick > other._nick;
+	}
+
+	bool operator==(const User& other) const {
+		return _nick == other._nick;
+	}
+
 	void SetNick(string nick) {
 		this->_nick = nick;
 	}
 
-	string GetNick() {
+	string GetNick() const {
 		return this->_nick;
 	}
 
@@ -50,7 +62,7 @@ public:
 		this->_password = password;
 	}
 
-	string GetPassword() {
+	string GetPassword() const {
 		return this->_password;
 	}
 
@@ -58,7 +70,7 @@ public:
 		this->_role = role;
 	}
 
-	string GetRole() {
+	string GetRole() const {
 		return this->_role;
 	}
 
@@ -67,5 +79,22 @@ public:
 		cout << "Password: " << _password << endl;
 		cout << "Role: " << _role << endl;
 	}
+
+	User* CreateUser() {
+		User* user = new User();
+		string name, pass, role;
+		cout << "Enter name: ";
+		cin >> name;
+		user->SetNick(name);
+		cout << "enter password: ";
+		cin >> pass;
+		user->SetPassword(pass);
+		cout << "enter role";
+		cin >> role;
+		user->SetRole(role);
+		return user;
+	}
+
 };
+
 

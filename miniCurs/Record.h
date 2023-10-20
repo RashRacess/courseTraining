@@ -13,7 +13,7 @@ private:
 	string _streetName;
 	int _houseNumber;
 public:
-	Record():_companyName{"unknown"}, _agent{ "unknown" }, _phoneNumber{ "unknown" }, _streetName{ "unknown" }, _houseNumber{0}{}
+	Record() :_companyName{ "unknown" }, _agent{ "unknown" }, _phoneNumber{ "unknown" }, _streetName{ "unknown" }, _houseNumber{ 0 } {}
 
 	Record(string companyName, string agent, string phoneNumber, string streetName, int houseNumber) {
 		this->_companyName = companyName;
@@ -31,33 +31,32 @@ public:
 		_houseNumber = rec._houseNumber;
 	}
 
-	bool operator<(const Record& rec) {
+	bool operator<(const Record& rec) const {
 		return this->_companyName < rec._companyName;
 	}
 
-	bool operator>(const Record& rec) {
+	bool operator>(const Record& rec) const {
 		return this->_companyName > rec._companyName;
 	}
 
-	bool operator==(const Record& rec) {
+	bool operator==(const Record& rec) const {
 		return this->_companyName == rec._companyName;
 	}
 
-	string GetComName();
+	string GetComName() const;
 	void SetComName(string comName);
 
-	string GetAgent();
+	string GetAgent() const;
 	void SetAgent(string agent);
 
-	string GetPhoneNum();
+	string GetPhoneNum()const;
 	void SetPhoneNum(string phoneNum);
 
-	string GetStreetName();
+	string GetStreetName()const;
 	void SetStreetName(string streetName);
 
-	int GetHouseNum();
+	int GetHouseNum()const;
 	void SetHouseNum(int num);
-
 
 	void ShowRec();
 

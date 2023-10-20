@@ -130,14 +130,11 @@
     <ClCompile Include="func.cpp" />
     <ClCompile Include="miniCurs.cpp" />
     <ClCompile Include="Record.cpp" />
-    <ClCompile Include="RecordTree.cpp" />
-    <ClCompile Include="Tree.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="func.h" />
     <ClInclude Include="Record.h" />
-    <ClInclude Include="RecordTree.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>

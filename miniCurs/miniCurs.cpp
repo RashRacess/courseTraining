@@ -1,26 +1,28 @@
 ﻿#include "func.h"
-#include "User.h"
-#include "Tree.h"
-#include "Record.h"
-#include "RecordTree.h"
 
 int main() {
-	system("chcp 65001");
-	cout << "Users:" << endl;
-	User dima("dima", "12345", "admin");
-	Tree derevo;
-	derevo.InsertNode(&dima);
-	derevo.ShowTree();
+	//User user{"dima", "12345", "pole"};
+	//User user2{"dina", "3246", "admin"};
+	//User user3{"dasha", "4y3374", "pole"};
 
-	cout << endl << endl << endl;
-	
-	cout << "Records:" << endl;
-	RecordTree recTree;
-	Record rec("microsoft", "bill", "112", "newYork", 3);
-	recTree.AddRec(&rec);
+	//Record rec("microsoft", "bill", "112", "newYork", 3);
+	//Record rec2("apple", "timmy", "911", "california", 7);
+
+	cout << "Records: " <<  endl;
+	Tree<Record>bst;
+	Record newRec("google", "dima", "12345", "rechitskaya", 4);
 	Record rec2("apple", "timmy", "911", "california", 7);
-	recTree.AddRec(&rec2);
-	recTree.ShowTree();
+	bst.Insert(newRec);
+	bst.Insert(rec2);
+	bst.Show();
 
-	return 0;
+	cout << "Users: " << endl;
+	Tree<User>bst2;
+	User user{"dima", "12345", "pole"};
+	User user2{"dina", "3246", "admin"};
+	User user3{"dasha", "4y3374", "pole"};
+	bst2.Insert(user);
+	bst2.Insert(user2);
+	bst2.Insert(user3);
+	bst2.Show();
 }

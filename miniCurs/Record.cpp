@@ -1,6 +1,6 @@
 #include "Record.h"
 
-string Record::GetComName()
+string Record::GetComName() const 
 {
 	return this->_companyName;
 }
@@ -10,7 +10,7 @@ void Record::SetComName(string comName)
 	this->_companyName = comName;
 }
 
-string Record::GetAgent()
+string Record::GetAgent() const
 {
 	return this->_agent;
 }
@@ -20,7 +20,7 @@ void Record::SetAgent(string agent)
 	this->_agent = agent;
 }
 
-string Record::GetPhoneNum()
+string Record::GetPhoneNum() const
 {
 	return this->_phoneNumber;
 }
@@ -30,7 +30,7 @@ void Record::SetPhoneNum(string phoneNum)
 	this->_phoneNumber = phoneNum;
 }
 
-string Record::GetStreetName()
+string Record::GetStreetName() const
 {
 	return this->_streetName;
 }
@@ -40,7 +40,7 @@ void Record::SetStreetName(string streetName)
 	this->_streetName = streetName;
 }
 
-int Record::GetHouseNum()
+int Record::GetHouseNum() const
 {
 	return this->_houseNumber;
 }

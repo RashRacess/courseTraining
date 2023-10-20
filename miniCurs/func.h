@@ -11,6 +11,10 @@
 #include <conio.h>
 #include <iostream>
 #include <fstream>
+#include "User.h"
+#include "Tree.h"
+#include "Record.h"
+
 
 #define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>
@@ -31,3 +35,5 @@ Type GetNumber(const char* S)
 }
 
 void devString(string in, string* arr);
+ostream& operator<<(ostream& myCout, const User& other);
+ostream& operator<<(ostream& myCout, const Record& other);
