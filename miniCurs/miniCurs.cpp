@@ -1,30 +1,16 @@
 ﻿#include "func.h"
+#include "Authorization.h"
 
 int main() {
-	ifstream file;
-	//User user{ "dima", "12345", "pole" };
-	//User user2{ "dina", "3246", "admin" };
-	//User user3{ "dasha", "4y3374", "pole" };
-	//bst2.Insert(user);
-	//bst2.Insert(user2);
-	//bst2.Insert(user3);
+	Tree<User> UserTree; //дерево пользователей
+	Tree<Record> RecordTree; //дерево записей
+	User pers("RashRecess", "33TG2", "admin"); //администратор
 
-	Record rec("microsoft", "bill", "112", "newYork", 3);
-	//Record rec2("apple", "timmy", "911", "california", 7);
+	UserTree.Insert(pers); //добавление администратора
+	User *currentUser = new User();
 
-	cout << "Records: " <<  endl;
-	Tree<Record>bst;
-	CreateRecordTree(bst, file, "Records.txt");
-	HumanRecordInference();
-	bst.Show();
-	bst.Delete();
+	GetAccess(UserTree, *currentUser);
 
-	cout << endl << endl;
-
-	cout << "Users: " << endl;
-	Tree<User>bst2;
-	CreateUserTree(bst2, file, "Users.txt");
-	HumanUserInference();
-	bst2.Show();
-
+	cout << "Hello, " << currentUser->GetNick() << ". How are you?";
+	return 0;
 }

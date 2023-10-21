@@ -15,7 +15,7 @@ public:
 
 	User() : _nick{ "unknown" }, _password{ "unknown" }, _role{ "unknown" } {}
 
-	User(string nick, string password, string role) {
+	User(string nick, string password, string role = "user") {
 		this->_nick = nick;
 		this->_password = password;
 		this->_role = role;
@@ -47,7 +47,7 @@ public:
 	}
 
 	bool operator==(const User& other) const {
-		return _nick == other._nick;
+		return (_nick == other._nick) and (_password == other._password);
 	}
 
 	void SetNick(string nick) {

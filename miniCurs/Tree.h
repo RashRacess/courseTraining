@@ -20,6 +20,8 @@ private:
 
 	void DeleteTree(Node* root);
 
+	bool SearchInTree(Node* root, const T& value);
+
 public:
 	Tree() : root{ nullptr } {}
 
@@ -37,6 +39,10 @@ public:
 
 	void Delete() {
 		DeleteTree(root);
+	}
+
+	bool Search(const T& node) {
+		return SearchInTree(root, node);
 	}
 
 };
@@ -75,5 +81,25 @@ void Tree<T>::DeleteTree(Node* root) {
 		DeleteTree(root->left);
 		DeleteTree(root->right);
 		delete root;
+	}
+}
+
+template<typename T>
+bool Tree<T>::SearchInTree(Node* root, const T& node) {
+	if (!root) {
+		return false;
+	}
+	else {
+		if (root->data == node) {
+			return true;
+		}
+
+		if (node < root->data) {
+			return SearchInTree(root->left, node);
+		}
+
+		else if (node > root->data) {
+			return SearchInTree(root->right, node);
+		}
 	}
 }
