@@ -43,7 +43,7 @@ public:
 	}
 
 	bool operator<(const User& other) const {
-		return _nick > other._nick;
+		return _nick < other._nick;
 	}
 
 	bool operator==(const User& other) const {
@@ -94,7 +94,6 @@ public:
 		user->SetRole(role);
 		return user;
 	}
-
 };
 
 

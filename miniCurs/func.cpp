@@ -19,35 +19,60 @@ void devString(string in, string* arr)
 
 
 ostream& operator<<(ostream& myCout, const User& other) {
-	myCout << "User name: " << other.GetNick() << '\t';
-	myCout << "Password: " << other.GetPassword() << '\t';
-	myCout << "Role: " << other.GetRole() << '\t';
+	myCout << "| " << setw(10) << other.GetNick() << " | " << setw(15) << other.GetPassword() << " | " << setw(10) << other.GetRole() << " |";
 	return myCout;
 }
 
 ostream& operator<<(ostream& myCout, const Record& other) {
-	myCout << "Name of company: " << other.GetComName() << endl;
-	myCout << "Agent: " << other.GetAgent() << endl;
-	myCout << "Phone number: " << other.GetPhoneNum() << endl;
-	myCout << "Street name: " << other.GetStreetName()<< endl;
-	myCout << "house number: " << other.GetHouseNum() << endl;
+	myCout << "| " << setw(10) << other.GetComName() << " | ";
+	myCout << setw(10) << other.GetAgent() << " | ";
+	myCout << setw(10) << other.GetPhoneNum() << " | ";
+	myCout << setw(20) << other.GetStreetName() << " | ";
+	myCout << setw(8) << other.GetHouseNum() << " |";
 	return myCout;
 }
 
-//void CreateUserTree(Tree &root, ifstream& file)
-//{
-//	User* user = new User();
-//	string line;
-//	string* arrString = new string[100];
-//	file.open("Users.txt");
-//	if (!(file.is_open())) return;
-//	while (getline(file, line)) {
-//		devString(line, arrString);
-//		user->SetNick(arrString[0]);
-//		root.InsertNode(arrString[0]);
-//	}
-//	file.close();
-//	delete[] arrString;
-//}
+void CreateUserTree(Tree<User>& root, ifstream& file, string nameOfFile)
+{
+	string line;
+	string* arrString = new string[98];
+	file.open(nameOfFile);
+	if (!(file.is_open())) return;
+	while (getline(file, line)) {
+		devString(line, arrString);
+		User user(arrString[0], arrString[1], arrString[2]);
+		root.Insert(user);
+	}
+	file.close();
+	delete[] arrString;
+}
 
+void CreateRecordTree(Tree<Record>& root, ifstream& file, string nameOfFile) {
+	string line;
+	string* arrString = new string[99];
+	file.open(nameOfFile);
+	if (!(file.is_open())) return;
+	while (getline(file, line)) {
+		devString(line, arrString);
+		Record rec(arrString[0], arrString[1], arrString[2], arrString[3], stoi(arrString[4]));
+		root.Insert(rec);
+	}
+	file.close();
+	delete[] arrString;
+}
 
+void HumanUserInference() {
+	cout << "---------------------------------------------" << endl;
+	cout << "| " << setw(10) << "User" << " | " << setw(15) << "Password" << " | " << setw(10) << "Role" << " |" << endl;
+	cout << "---------------------------------------------" << endl;
+}
+
+void HumanRecordInference() {
+	cout << "--------------------------------------------------------------------------" << endl;
+	cout << "| " << setw(10) << "Name" << " | ";
+	cout << setw(10) << "Agent" << " | ";
+	cout << setw(10) << "Phone" << " | ";
+	cout << setw(20) << "Street Name" << " | ";
+	cout << setw(5) << "Home num" << " |" << endl;
+	cout << "--------------------------------------------------------------------------" << endl;
+}
