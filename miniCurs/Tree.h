@@ -22,6 +22,7 @@ private:
 
 	bool SearchInTree(Node* root, const T& value);
 
+
 public:
 	Tree() : root{ nullptr } {}
 
@@ -44,7 +45,6 @@ public:
 	bool Search(const T& node) {
 		return SearchInTree(root, node);
 	}
-
 };
 
 template <typename T>

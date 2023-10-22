@@ -136,6 +136,7 @@
   <ItemGroup>
     <ClInclude Include="Authorization.h" />
     <ClInclude Include="func.h" />
+    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Record.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="User.h" />

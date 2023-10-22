@@ -13,8 +13,9 @@
 #include <fstream>
 #include <iomanip>
 #include "User.h"
-#include "Tree.h"
 #include "Record.h"
+#include "Tree.h"
+#include "LinkedList.h"
 
 
 #define _CRTDBG_MAP_ALLOC
