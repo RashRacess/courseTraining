@@ -2,10 +2,17 @@
 #include "Authorization.h"
 
 int main() {
-	LinkedList<User> userList;
+	Tree<User> UserTree; //дерево пользователей
+	Tree<Record> RecordTree; //дерево записей
 	User pers("RashRecess", "33TG2", "admin"); //администратор
-	userList.Add(pers);
-	userList.Show();
-	userList.Delete();
+
+	UserTree.Insert(pers); //добавление администратора
+	User *currentUser = new User();
+
+	currentUser = GetAccess(UserTree, *currentUser);
+
+	cout << "Hello, " << currentUser->GetNick() << ". How are you?";
+
+	UserTree.Show();
 	return 0;
 }

@@ -20,7 +20,7 @@ private:
 
 	void DeleteTree(Node* root);
 
-	bool SearchInTree(Node* root, const T& value);
+	T* SearchInTree(Node* root, const T& value);
 
 
 public:
@@ -60,7 +60,7 @@ void Tree<T>::InsertNode(Node* root, const T& value) {
 	else if (value > root->data) {
 		if (root->right == nullptr)
 			root->right = new Node(value);
-		else{
+		else {
 			InsertNode(root->right, value);
 		}
 	}
@@ -85,13 +85,13 @@ void Tree<T>::DeleteTree(Node* root) {
 }
 
 template<typename T>
-bool Tree<T>::SearchInTree(Node* root, const T& node) {
+T* Tree<T>::SearchInTree(Node* root, const T& node) {
 	if (!root) {
-		return false;
+		return nullptr;
 	}
 	else {
 		if (root->data == node) {
-			return true;
+			return &root->data;
 		}
 
 		if (node < root->data) {

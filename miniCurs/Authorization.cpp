@@ -1,22 +1,22 @@
 #include "Authorization.h"
 
-void GetAccess(Tree<User>& root, User &user) {
+User* GetAccess(Tree<User>& root, User& user) {
 	cout << "Do you have an account?" << endl;
 	string answer;
 	cin >> answer;
 	if (answer == "yes") {
 		system("cls");
 		cin.ignore(cin.rdbuf()->in_avail());
-		SignIn(root, user);
+		return SignIn(root, user);
 	}
 	else {
 		system("cls");
 		cin.ignore(cin.rdbuf()->in_avail());
-		SignUp(root, user);
+		return SignUp(root, user);
 	}
 }
 
-void SignIn(Tree<User>& root, User user)
+User* SignIn(Tree<User>& root, User user)
 {
 	cout << "enter your name: ";
 	string name;
@@ -31,12 +31,12 @@ void SignIn(Tree<User>& root, User user)
 		cout << "congratulations" << endl;
 	}
 	else {
-		system("cls");
+		cout << "You are not the father" << endl;
 		exit(0);
 	}
 }
 
-void SignUp(Tree<User>& root, User& user)
+User* SignUp(Tree<User>& root, User& user)
 {
 	cout << "enter your name: ";
 	string name;
@@ -48,5 +48,6 @@ void SignUp(Tree<User>& root, User& user)
 	user.SetPassword(pass);
 	user.SetRole("user");
 	root.Insert(user);
+	return &user;
 	system("cls");
 }
