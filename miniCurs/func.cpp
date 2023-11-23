@@ -17,8 +17,13 @@ void devString(string in, string* arr)
 	//(*count) = ++c;
 }
 
-
 ostream& operator<<(ostream& myCout, const User& other) {
+	myCout << "| " << setw(10) << other.GetNick() << " | " << setw(15) << other.GetPassword() << " | " << setw(10) << other.GetRole() << " |";
+	return myCout;
+}
+
+ostream& operator<<(ostream& myCout, const Admin& other)
+{
 	myCout << "| " << setw(10) << other.GetNick() << " | " << setw(15) << other.GetPassword() << " | " << setw(10) << other.GetRole() << " |";
 	return myCout;
 }
@@ -32,7 +37,29 @@ ostream& operator<<(ostream& myCout, const Record& other) {
 	return myCout;
 }
 
-void CreateUserTree(Tree<User>& root, ifstream& file, string nameOfFile)
+ostream& operator<<(ostream& fCout, const User* other)
+{
+	fCout << "| " << setw(10) << other->GetNick() << " | " << setw(15) << other->GetPassword() << " | " << setw(10) << other->GetRole() << " |";
+	return fCout;
+}
+
+ostream& operator<<(ostream& fCout, const Admin* other)
+{
+	fCout << "| " << setw(10) << other->GetNick() << " | " << setw(15) << other->GetPassword() << " | " << setw(10) << other->GetRole() << " |";
+	return fCout;
+}
+
+ostream& operator<<(ostream& fCout, const Record* other)
+{
+	fCout << "| " << setw(10) << other->GetComName() << " | ";
+	fCout << setw(10) << other->GetAgent() << " | ";
+	fCout << setw(10) << other->GetPhoneNum() << " | ";
+	fCout << setw(20) << other->GetStreetName() << " | ";
+	fCout << setw(8) << other->GetHouseNum() << " |";
+	return fCout;
+}
+
+void CreateUserTree(Tree<User>& root, fstream& file, string nameOfFile)
 {
 	string line;
 	string* arrString = new string[98];
@@ -47,7 +74,7 @@ void CreateUserTree(Tree<User>& root, ifstream& file, string nameOfFile)
 	delete[] arrString;
 }
 
-void CreateRecordTree(Tree<Record>& root, ifstream& file, string nameOfFile) {
+void CreateRecordTree(Tree<Record>& root, fstream& file, string nameOfFile) {
 	string line;
 	string* arrString = new string[99];
 	file.open(nameOfFile);
@@ -75,4 +102,20 @@ void HumanRecordInference() {
 	cout << setw(20) << "Street Name" << " | ";
 	cout << setw(5) << "Home num" << " |" << endl;
 	cout << "--------------------------------------------------------------------------" << endl;
+}
+
+Admin& copirovanie(const User& user) {
+	Admin* admin = new Admin();
+	admin->SetNick(user.GetNick());
+	admin->SetPassword(user.GetPassword());
+	return *admin;
+}
+
+void showAndWAit()
+{
+	char ch;
+	ch = _getch();
+	if (ch) {
+		system("cls");
+	}
 }

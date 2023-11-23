@@ -1,4 +1,6 @@
+#pragma once
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 template <typename T>
@@ -14,19 +16,20 @@ private:
 
 	Node* root;
 
-	void InsertNode(Node* root, const T& value);
+	void InsertNode(Node* root, T& value);
 
 	void ShowTree(Node* root);
 
 	void DeleteTree(Node* root);
 
-	T* SearchInTree(Node* root, const T& value);
+	T* SearchInTree(Node* root, T& value);
 
+	void RecordTreeFile(Node* root, fstream &file);
 
 public:
 	Tree() : root{ nullptr } {}
 
-	void Insert(const T& node) {
+	void Insert(T& node) {
 		if (root == nullptr)
 			root = new Node(node);
 		else {
@@ -42,13 +45,20 @@ public:
 		DeleteTree(root);
 	}
 
-	bool Search(const T& node) {
+	T* Search(T& node) {
 		return SearchInTree(root, node);
+	}
+
+	void RecordTreeToFile(fstream &file, string name) {
+		file.open(name, std::ios::out);
+		if (!file.is_open()) return;
+		RecordTreeFile(root, file);
+		file.close();
 	}
 };
 
 template <typename T>
-void Tree<T>::InsertNode(Node* root, const T& value) {
+void Tree<T>::InsertNode(Node* root, T& value) {
 	if (value < root->data) {
 		if (root->left == nullptr) {
 			root->left = new Node(value);
@@ -85,7 +95,7 @@ void Tree<T>::DeleteTree(Node* root) {
 }
 
 template<typename T>
-T* Tree<T>::SearchInTree(Node* root, const T& node) {
+T* Tree<T>::SearchInTree(Node* root, T& node) {
 	if (!root) {
 		return nullptr;
 	}
@@ -101,5 +111,17 @@ T* Tree<T>::SearchInTree(Node* root, const T& node) {
 		else if (node > root->data) {
 			return SearchInTree(root->right, node);
 		}
+	}
+}
+
+template<typename T>
+void Tree<T>::RecordTreeFile(Node* root, fstream &file) {
+ 	if (!root) {
+		return;
+	}
+	else {
+		RecordTreeFile(root->left, file);
+		file << root->data << endl;
+		RecordTreeFile(root->right, file);
 	}
 }

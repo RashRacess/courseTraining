@@ -15,9 +15,8 @@
 #include "User.h"
 #include "Record.h"
 #include "Tree.h"
+#include "Admin.h"
 #include "LinkedList.h"
-
-
 #define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>
 
@@ -36,16 +35,33 @@ Type GetNumber(const char* S)
 	return a;
 }
 
-void CreateUserTree(Tree<User>& root, ifstream& file, string nameOFile);
+void CreateUserTree(Tree<User>& root, fstream& file, string nameOFile);
 
-void CreateRecordTree(Tree<Record>& root, ifstream& file, string nameOfFile);
+void CreateRecordTree(Tree<Record>& root, fstream& file, string nameOfFile);
 
 void devString(string in, string* arr);
 
 ostream& operator<<(ostream& myCout, const User& other);
 
+ostream& operator<<(ostream& myCout, const Admin& other);
+
 ostream& operator<<(ostream& myCout, const Record& other);
+
+ostream& operator<<(ostream& fCout, const User* other);
+
+ostream& operator<<(ostream& fCout, const Admin* other);
+
+ostream& operator<<(ostream& fCout, const Record* other);
 
 void HumanUserInference();
 
 void HumanRecordInference();
+
+Admin& copirovanie(const User& user);
+
+void showAndWAit();
+//
+//template<typename T>
+//void RecordTreeToFile(Tree<T> *node, fstream file, string nameOfFile) {
+//
+//}

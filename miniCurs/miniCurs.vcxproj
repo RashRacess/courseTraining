@@ -127,19 +127,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Admin.cpp" />
+    <ClCompile Include="AdminInterface.cpp" />
     <ClCompile Include="Authorization.cpp" />
+    <ClCompile Include="Autoriz.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="miniCurs.cpp" />
     <ClCompile Include="Record.cpp" />
     <ClCompile Include="User.cpp" />
+    <ClCompile Include="UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Admin.h" />
+    <ClInclude Include="AdminInterface.h" />
     <ClInclude Include="Authorization.h" />
+    <ClInclude Include="Autoriz.h" />
     <ClInclude Include="func.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Record.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="User.h" />
+    <ClInclude Include="UserInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

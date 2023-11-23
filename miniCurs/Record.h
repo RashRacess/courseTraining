@@ -31,6 +31,10 @@ public:
 		_houseNumber = rec._houseNumber;
 	}
 
+	Record& operator*() {
+		return *this;
+	}
+
 	bool operator<(const Record& rec) const {
 		return this->_companyName < rec._companyName;
 	}

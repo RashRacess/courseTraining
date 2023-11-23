@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include "Tree.h"
 using namespace std;
 
 class User
@@ -15,10 +16,15 @@ public:
 
 	User() : _nick{ "unknown" }, _password{ "unknown" }, _role{ "unknown" } {}
 
-	User(string nick, string password, string role = "user") {
+	User(string nick, string password, string role) {
 		this->_nick = nick;
 		this->_password = password;
 		this->_role = role;
+	}
+
+	User(string nick, string password) {
+		this->_nick = nick;
+		this->_password = password;
 	}
 
 	~User();
@@ -39,15 +45,19 @@ public:
 	}
 
 	bool operator>(const User& other) const {
-		return _nick > other._nick;
+		return (_nick > other._nick);// and (_password > other._password);
 	}
 
 	bool operator<(const User& other) const {
-		return _nick < other._nick;
+		return (_nick < other._nick);// and (_password < other._password);
 	}
 
 	bool operator==(const User& other) const {
-		return (_nick == other._nick) and (_password == other._password);
+		return (_nick == other._nick);// and (_password == other._password);
+	}
+
+	User& operator*() {
+		return *this;
 	}
 
 	void SetNick(string nick) {
@@ -83,17 +93,23 @@ public:
 	User* CreateUser() {
 		User* user = new User();
 		string name, pass, role;
+		cin.ignore(cin.rdbuf()->in_avail());
 		cout << "Enter name: ";
 		cin >> name;
 		user->SetNick(name);
+		cin.ignore(cin.rdbuf()->in_avail());
 		cout << "enter password: ";
 		cin >> pass;
 		user->SetPassword(pass);
+		cin.ignore(cin.rdbuf()->in_avail());
 		cout << "enter role";
 		cin >> role;
 		user->SetRole(role);
 		return user;
 	}
+
+	template<typename T>
+	void ShowTree(Tree<T>& root) {
+		root.Show();
+	}
 };
-
-
