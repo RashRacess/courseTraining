@@ -16,111 +16,48 @@ public:
 
 	User() : _nick{ "unknown" }, _password{ "unknown" }, _role{ "unknown" } {}
 
-	User(string nick, string password, string role) {
-		this->_nick = nick;
-		this->_password = password;
-		this->_role = role;
-	}
+	User(string nick, string password, string role);
 
-	User(string nick, string password) {
-		this->_nick = nick;
-		this->_password = password;
-	}
+	User(string nick, string password);
 
 	~User();
 
-	User(const User& user) {
-		_nick = user._nick;
-		_password = user._password;
-		_role = user._role;
-	}
+	User(const User& user);
 
 	User& operator=(const User& user);
 
-	bool operator>(const User& other) const {
-		if (this->GetNick() != other.GetNick())
-			return (this->_nick > other._nick);
-		else {
-			return (this->_password > other._password);
-		}
-	}
+	bool operator>(const User& other) const;
 
-	bool operator<(const User& other) const {
-		if (this->GetNick() != other.GetNick())
-			return (this->_nick < other._nick);
-		else {
-			return (this->GetPassword() < other.GetPassword());
-		}
-	}
+	bool operator<(const User& other) const;
 
-	bool operator==(const User& other) const {
-		return (this->_nick == other._nick) and (this->_password == other._password);
-	}
+	bool operator==(const User& other) const;
 
-	bool operator==(const string& other) const {
-		return this->GetNick() == other;
-	}
+	bool operator==(const string& other) const;
 
-	bool operator<(const string& str) const {
-		return (this->_nick < str);
-	}
+	bool operator<(const string& str) const;
 
-	bool operator>(const string& str) const {
-		return (this->_nick > str);
-	}
+	bool operator>(const string& str) const;
 
-	User& operator*() {
-		return *this;
-	}
+	User& operator*();
 
-	void SetNick(string nick) {
-		this->_nick = nick;
-	}
+	void SetNick(string nick);
 
-	string GetNick() const {
-		return this->_nick;
-	}
+	string GetNick() const;
 
-	void SetPassword(string password) {
-		this->_password = password;
-	}
+	void SetPassword(string password);
 
-	string GetPassword() const {
-		return this->_password;
-	}
+	string GetPassword() const;
 
-	void SetRole(string role) {
-		this->_role = role;
-	}
+	void SetRole(string role);
 
-	string GetRole() const {
-		return this->_role;
-	}
+	string GetRole() const;
 
-	void ShowUser() {
-		cout << "User name: " << this->_nick << endl;
-		cout << "Password: " << this->_password << endl;
-		cout << "Role: " << this->_role << endl;
-	}
+	void ShowUser();
 
-	void CreateUser() {
-		string name, pass, role;
-		cin.ignore(cin.rdbuf()->in_avail());
-		cout << "Enter name: ";
-		cin >> name;
-		this->SetNick(name);
-		cin.ignore(cin.rdbuf()->in_avail());
-		cout << "enter password: ";
-		cin >> pass;
-		this->SetPassword(pass);
-		cin.ignore(cin.rdbuf()->in_avail());
-		cout << "enter role: ";
-		cin >> role;
-		this->SetRole(role);
-	}
+	void CreateUser();
 
-	template<typename T>
-	void ShowTree(Tree<T>& root) {
-		root.Show();
-	}
+	//template<typename T>
+	//void ShowTree(Tree<T>& root) {
+	//	root.Show();
+	//}
 };

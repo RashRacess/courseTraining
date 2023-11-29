@@ -15,49 +15,23 @@ private:
 public:
 	Record() :_companyName{ "unknown" }, _agent{ "unknown" }, _phoneNumber{ "unknown" }, _streetName{ "unknown" }, _houseNumber{ 0 } {}
 
-	Record(string companyName, string agent, string phoneNumber, string streetName, int houseNumber) {
-		this->_companyName = companyName;
-		this->_agent = agent;
-		this->_phoneNumber = phoneNumber;
-		this->_streetName = streetName;
-		this->_houseNumber = houseNumber;
-	}
+	Record(string companyName, string agent, string phoneNumber, string streetName, int houseNumber);
 
-	Record(const Record& rec) {
-		_companyName = rec._companyName;
-		_agent = rec._agent;
-		_phoneNumber = rec._phoneNumber;
-		_streetName = rec._streetName;
-		_houseNumber = rec._houseNumber;
-	}
+	Record(const Record& rec);
 
-	Record& operator*() {
-		return *this;
-	}
+	Record& operator*();
 
-	bool operator<(const Record& rec) const {
-		return this->_companyName < rec._companyName;
-	}
+	bool operator<(const Record& rec) const;
 
-	bool operator>(const Record& rec) const {
-		return this->_companyName > rec._companyName;
-	}
+	bool operator>(const Record& rec) const;
 
-	bool operator==(const Record& rec) const {
-		return this->_companyName == rec._companyName;
-	}
+	bool operator==(const Record& rec) const;
 
-	bool operator<(const string& str) {
-		return this->_companyName < str;
-	}
+	bool operator<(const string& str) const;
 
-	bool operator>(const string& str) {
-		return this->_companyName > str;
-	}
+	bool operator>(const string& str) const;
 
-	bool operator==(const string& str) {
-		return this->_companyName == str;
-	}
+	bool operator==(const string& str) const;
 
 	string GetComName() const;
 	void SetComName(string comName);
@@ -76,29 +50,6 @@ public:
 
 	void ShowRec();
 
-	void CreateRecord() {
-		string comName, agent, phoneNum, streetName;
-		int houseNum;
-		cin.ignore(cin.rdbuf()->in_avail());
-		cout << "Enter name of this company: ";
-		cin >> comName;
-		cin.ignore(cin.rdbuf()->in_avail());
-		cout << "Enter agent:";
-		cin >> agent;
-		cin.ignore(cin.rdbuf()->in_avail());
-		cout << "Enter phone of this company: ";
-		cin >> phoneNum;
-		cin.ignore(cin.rdbuf()->in_avail());
-		cout << "Enter street name of this company: ";
-		cin >> streetName;
-		cin.ignore(cin.rdbuf()->in_avail());
-		cout << "Enter house number: " << endl;
-		cin >> houseNum;
-		this->SetComName(comName);
-		this->SetAgent(agent);
-		this->SetPhoneNum(phoneNum);
-		this->SetStreetName(streetName);
-		this->SetHouseNum(houseNum);
-	}
+	void CreateRecord();
 };
 

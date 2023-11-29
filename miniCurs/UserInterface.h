@@ -32,7 +32,7 @@ public:
 
 			case 2:
 				cout << "you choosed showing book of recording" << endl;
-				user.ShowTree<Record>(RecordTree);
+				RecordTree.Show();
 				showAndWAit();
 				break;
 			case 3:

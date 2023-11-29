@@ -23,7 +23,7 @@ public:
 
 		CreateUserTree(UserTree, users, "Users.txt");
 
-		UserTree.Show();
+		//UserTree.Show();
 
 		currentUser = access(&UserTree, *currentUser);
 
@@ -49,5 +49,19 @@ public:
 			adminInterface.AdminAccount(*admin);
 		}
 		return;
+	}
+	void LesGo2() {
+		LinkedList<User>list;
+		User foma1("foma", "12345", "user");
+		User foma2("josh", "098", "admin");
+		User foma3("gena", "1209", "user");
+		User foma4("yulia", "687", "user");
+		User foma5("hohol", "345", "user");
+		list.Add(foma1);
+		list.Add(foma2);
+		list.Add(foma3);
+		list.Add(foma4);
+		list.Add(foma5);
+		list.Show();
 	}
 };

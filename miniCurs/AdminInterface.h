@@ -49,12 +49,12 @@ public:
 				break;
 			case 1:
 				cout << "you choosed show user tree" << endl;
-				admin.ShowTree<User>(UserTree);
+				UserTree.Show();
 				showAndWAit();
 				break;
 			case 2:
 				cout << "you choosed show record tree" << endl;
-				admin.ShowTree<Record>(RecordTree);
+				RecordTree.Show();
 				showAndWAit();
 				break;
 			case 3:

@@ -63,7 +63,7 @@ void LinkedList<T>::AddNode(Node* root, const T& node) {
 template<typename T>
 void LinkedList<T>::ShowList(Node* root) {
 	while (root) {
-		cout << root->data << "->";
+		cout << root->data << endl;
 		root = root->next;
 	}
 }

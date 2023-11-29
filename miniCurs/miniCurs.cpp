@@ -5,6 +5,5 @@
 int main() {
 	Autoriz obj;
 	obj.LesGo();
-
 	return 0;
 }

@@ -1,6 +1,60 @@
 #include "Record.h"
 
-string Record::GetComName() const 
+Record::Record(string companyName, string agent, string phoneNumber, string streetName, int houseNumber)
+{
+	this->_companyName = companyName;
+	this->_agent = agent;
+	this->_phoneNumber = phoneNumber;
+	this->_streetName = streetName;
+	this->_houseNumber = houseNumber;
+}
+
+Record::Record(const Record& rec)
+{
+	_companyName = rec._companyName;
+	_agent = rec._agent;
+	_phoneNumber = rec._phoneNumber;
+	_streetName = rec._streetName;
+	_houseNumber = rec._houseNumber;
+}
+
+Record& Record::operator*()
+{
+	return *this;
+}
+
+bool Record::operator<(const Record& rec) const
+{
+	return this->_companyName < rec._companyName;
+}
+
+bool Record::operator>(const Record& rec) const
+{
+	return this->_companyName > rec._companyName;
+}
+
+bool Record::operator==(const Record& rec) const
+{
+	return this->_companyName == rec._companyName;
+}
+
+bool Record::operator<(const string& str) const
+{
+	return this->_companyName < str;
+}
+
+bool Record::operator>(const string& str) const
+{
+	return this->_companyName > str;
+}
+
+bool Record::operator==(const string& str) const
+{
+	return this->_companyName == str;
+}
+
+
+string Record::GetComName() const
 {
 	return this->_companyName;
 }
@@ -57,4 +111,30 @@ void Record::ShowRec()
 	cout << "Phone number: " << this->_phoneNumber << endl;
 	cout << "Street name: " << this->_streetName << endl;
 	cout << "house number: " << this->_houseNumber << endl;
+}
+
+void Record::CreateRecord()
+{
+	string comName, agent, phoneNum, streetName;
+	int houseNum;
+	cin.ignore(cin.rdbuf()->in_avail());
+	cout << "Enter name of this company: ";
+	cin >> comName;
+	cin.ignore(cin.rdbuf()->in_avail());
+	cout << "Enter agent:";
+	cin >> agent;
+	cin.ignore(cin.rdbuf()->in_avail());
+	cout << "Enter phone of this company: ";
+	cin >> phoneNum;
+	cin.ignore(cin.rdbuf()->in_avail());
+	cout << "Enter street name of this company: ";
+	cin >> streetName;
+	cin.ignore(cin.rdbuf()->in_avail());
+	cout << "Enter house number: " << endl;
+	cin >> houseNum;
+	this->SetComName(comName);
+	this->SetAgent(agent);
+	this->SetPhoneNum(phoneNum);
+	this->SetStreetName(streetName);
+	this->SetHouseNum(houseNum);
 }
