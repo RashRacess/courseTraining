@@ -19,7 +19,7 @@ User* access(Tree<User>* root, User& user)
 	}
 
 	else {
-		root->Insert(user);
+		//root->Insert(user);
 		user.SetRole("user");
 		cout << "ok" << endl;
 		return &user;

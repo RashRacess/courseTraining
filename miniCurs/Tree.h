@@ -26,6 +26,10 @@ private:
 
 	void RecordTreeFile(Node* root, fstream &file);
 
+	void SearchStringInTree(Node* root, string str);
+
+	void DeleteTreeNode(Node* root, T& node);
+
 public:
 	Tree() : root{ nullptr } {}
 
@@ -54,6 +58,10 @@ public:
 		if (!file.is_open()) return;
 		RecordTreeFile(root, file);
 		file.close();
+	}
+
+	void TreeSearchString(string str) {
+		SearchStringInTree(root, str);
 	}
 };
 
@@ -112,6 +120,7 @@ T* Tree<T>::SearchInTree(Node* root, T& node) {
 			return SearchInTree(root->right, node);
 		}
 	}
+	return nullptr;
 }
 
 template<typename T>
@@ -123,5 +132,47 @@ void Tree<T>::RecordTreeFile(Node* root, fstream &file) {
 		RecordTreeFile(root->left, file);
 		file << root->data << endl;
 		RecordTreeFile(root->right, file);
+	}
+}
+
+template<typename T>
+void Tree<T>::SearchStringInTree(Node* root, string str) {
+	if (!root) {
+		return;
+	}
+	else {
+		if (root->data == str) {
+			cout << &root->data << endl;
+		}
+
+		else if (root->data > str) {
+			SearchStringInTree(root->left, str);
+		}
+
+		else if (root->data < str) {
+			SearchStringInTree(root->right, str);
+		}
+	}
+	return;
+}
+
+template<typename T>
+void Tree<T>::DeleteTreeNode(Node* root, T& node) {
+	if (root == nullptr) {
+		return;
+	}
+	else {
+		if (root->data > node) {
+			DeleteTreeNode(root->left, node);
+		}
+		else if (root->data < node) {
+			DeleteTreeNode(root->right, node);
+		}
+		else {
+			if (root->left == nullptr and root->right == nullptr) {
+				root = nullptr;
+			}
+			
+		}
 	}
 }

@@ -47,6 +47,18 @@ public:
 		return this->_companyName == rec._companyName;
 	}
 
+	bool operator<(const string& str) {
+		return this->_companyName < str;
+	}
+
+	bool operator>(const string& str) {
+		return this->_companyName > str;
+	}
+
+	bool operator==(const string& str) {
+		return this->_companyName == str;
+	}
+
 	string GetComName() const;
 	void SetComName(string comName);
 
@@ -64,5 +76,29 @@ public:
 
 	void ShowRec();
 
+	void CreateRecord() {
+		string comName, agent, phoneNum, streetName;
+		int houseNum;
+		cin.ignore(cin.rdbuf()->in_avail());
+		cout << "Enter name of this company: ";
+		cin >> comName;
+		cin.ignore(cin.rdbuf()->in_avail());
+		cout << "Enter agent:";
+		cin >> agent;
+		cin.ignore(cin.rdbuf()->in_avail());
+		cout << "Enter phone of this company: ";
+		cin >> phoneNum;
+		cin.ignore(cin.rdbuf()->in_avail());
+		cout << "Enter street name of this company: ";
+		cin >> streetName;
+		cin.ignore(cin.rdbuf()->in_avail());
+		cout << "Enter house number: " << endl;
+		cin >> houseNum;
+		this->SetComName(comName);
+		this->SetAgent(agent);
+		this->SetPhoneNum(phoneNum);
+		this->SetStreetName(streetName);
+		this->SetHouseNum(houseNum);
+	}
 };
 

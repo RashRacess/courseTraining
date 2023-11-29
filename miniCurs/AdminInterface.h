@@ -3,6 +3,7 @@
 
 class AdminInterface
 {
+public:
 	void AdminAccount(Admin admin) {
 		fstream recordedUsers;
 		fstream recordedRecords;
@@ -18,6 +19,8 @@ class AdminInterface
 		Record* recordTmp = new Record();
 		User* userTmp = new User();
 
+		string nick, password, role;
+		string nameOfCompany;
 		system("cls");
 
 		cout << "Hello, " << admin.GetNick() << endl;
@@ -56,14 +59,24 @@ class AdminInterface
 				break;
 			case 3:
 				cout << "you choosed search record" << endl;
+				cout << "Enter name of company: ";
+				cin.ignore(cin.rdbuf()->in_avail());
+				getline(cin, nameOfCompany);
+				RecordTree.TreeSearchString(nameOfCompany);
+				showAndWAit();
 				break;
 			case 4:
 				cout << "you choosed search user" << endl;
+				cout << "Enter nick: ";
+				cin.ignore(cin.rdbuf()->in_avail());
+				getline(cin, nick);
+				UserTree.TreeSearchString(nick);
+				showAndWAit();
 				break;
 			case 5:
 				cout << "you choosed add record" << endl;
-				//recordTmp->CreateRecord();
-				//RecordTree.Insert(*recordTmp);
+				recordTmp->CreateRecord();
+				RecordTree.Insert(*recordTmp);
 				break;
 			case 6:
 				cout << "you choosed add user" << endl;

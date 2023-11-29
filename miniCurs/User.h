@@ -35,25 +35,38 @@ public:
 		_role = user._role;
 	}
 
-	User& operator=(const User& user) {
-		if (&user != this) {
-			_nick = user._nick;
-			_password = user._password;
-			_role = user._role;
-		}
-		return *this;
-	}
+	User& operator=(const User& user);
 
 	bool operator>(const User& other) const {
-		return (_nick > other._nick);// and (_password > other._password);
+		if (this->GetNick() != other.GetNick())
+			return (this->_nick > other._nick);
+		else {
+			return (this->_password > other._password);
+		}
 	}
 
 	bool operator<(const User& other) const {
-		return (_nick < other._nick);// and (_password < other._password);
+		if (this->GetNick() != other.GetNick())
+			return (this->_nick < other._nick);
+		else {
+			return (this->GetPassword() < other.GetPassword());
+		}
 	}
 
 	bool operator==(const User& other) const {
-		return (_nick == other._nick);// and (_password == other._password);
+		return (this->_nick == other._nick) and (this->_password == other._password);
+	}
+
+	bool operator==(const string& other) const {
+		return this->GetNick() == other;
+	}
+
+	bool operator<(const string& str) const {
+		return (this->_nick < str);
+	}
+
+	bool operator>(const string& str) const {
+		return (this->_nick > str);
 	}
 
 	User& operator*() {
@@ -85,27 +98,25 @@ public:
 	}
 
 	void ShowUser() {
-		cout << "User name: " << _nick << endl;
-		cout << "Password: " << _password << endl;
-		cout << "Role: " << _role << endl;
+		cout << "User name: " << this->_nick << endl;
+		cout << "Password: " << this->_password << endl;
+		cout << "Role: " << this->_role << endl;
 	}
 
-	User* CreateUser() {
-		User* user = new User();
+	void CreateUser() {
 		string name, pass, role;
 		cin.ignore(cin.rdbuf()->in_avail());
 		cout << "Enter name: ";
 		cin >> name;
-		user->SetNick(name);
+		this->SetNick(name);
 		cin.ignore(cin.rdbuf()->in_avail());
 		cout << "enter password: ";
 		cin >> pass;
-		user->SetPassword(pass);
+		this->SetPassword(pass);
 		cin.ignore(cin.rdbuf()->in_avail());
-		cout << "enter role";
+		cout << "enter role: ";
 		cin >> role;
-		user->SetRole(role);
-		return user;
+		this->SetRole(role);
 	}
 
 	template<typename T>

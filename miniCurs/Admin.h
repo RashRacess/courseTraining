@@ -19,13 +19,13 @@ public:
 
 	Admin(const Admin& admin) {
 		this->SetNick(admin.GetNick());
-		this->SetPassword(admin.GetNick());
+		this->SetPassword(admin.GetPassword());
 		this->SetRole(admin.GetRole());
 	}
 
 	Admin& operator=(const User& user) {
 		this->SetNick(user.GetNick());
-		this->SetPassword(user.GetNick());
+		this->SetPassword(user.GetPassword());
 		this->SetRole("admin");
 		return *this;
 	}
@@ -57,6 +57,18 @@ public:
 
 	bool operator==(const Admin& other) const {
 		return this->GetNick() == other.GetNick();
+	}
+
+	bool operator> (const string& str) const {
+		return this->GetNick() > str;
+	}
+
+	bool operator<(const string& str) const {
+		return this->GetNick() < str;
+	}
+
+	bool operator==(const string& str) const {
+		return this->GetNick() == str;
 	}
 
 	template<typename T>
