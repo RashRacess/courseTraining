@@ -25,17 +25,25 @@ Record& Record::operator*()
 
 bool Record::operator<(const Record& rec) const
 {
-	return this->_companyName < rec._companyName;
+	if (this->_companyName != rec._companyName)
+		return this->_companyName < rec._companyName;
+	else {
+		return this->_agent < rec._agent;
+	}
 }
 
 bool Record::operator>(const Record& rec) const
 {
-	return this->_companyName > rec._companyName;
+	if (this->_companyName != rec._companyName)
+		return this->_companyName > rec._companyName;
+	else {
+		return this->_agent > rec._agent;
+	}
 }
 
 bool Record::operator==(const Record& rec) const
 {
-	return this->_companyName == rec._companyName;
+	return this->_companyName == rec._companyName and this->_agent == rec._agent;
 }
 
 bool Record::operator<(const string& str) const

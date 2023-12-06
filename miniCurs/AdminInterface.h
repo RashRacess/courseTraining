@@ -20,7 +20,7 @@ public:
 		User* userTmp = new User();
 
 		string nick, password, role;
-		string nameOfCompany;
+		string nameOfCompany, agent;
 		system("cls");
 
 		cout << "Hello, " << admin.GetNick() << endl;
@@ -39,6 +39,7 @@ public:
 			cout << "7. Record users to file" << endl;
 			cout << "8. Record records to file" << endl;
 			cout << "9. Exit" << endl;
+			cout << "10. delete node" << endl;
 			forSwitch = GetNumber<int>("Your choise");
 			system("cls");
 			switch (forSwitch) {

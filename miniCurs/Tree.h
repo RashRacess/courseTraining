@@ -28,7 +28,7 @@ private:
 
 	void SearchStringInTree(Node* root, string str);
 
-	void DeleteTreeNode(Node* root, T& node);
+
 
 public:
 	Tree() : root{ nullptr } {}
@@ -143,36 +143,17 @@ void Tree<T>::SearchStringInTree(Node* root, string str) {
 	else {
 		if (root->data == str) {
 			cout << &root->data << endl;
+			SearchStringInTree(root->left, str);
+			SearchStringInTree(root->right, str);
 		}
 
-		else if (root->data > str) {
+		if (root->data > str) {
 			SearchStringInTree(root->left, str);
 		}
 
-		else if (root->data < str) {
+		if (root->data < str) {
 			SearchStringInTree(root->right, str);
 		}
 	}
 	return;
-}
-
-template<typename T>
-void Tree<T>::DeleteTreeNode(Node* root, T& node) {
-	if (root == nullptr) {
-		return;
-	}
-	else {
-		if (root->data > node) {
-			DeleteTreeNode(root->left, node);
-		}
-		else if (root->data < node) {
-			DeleteTreeNode(root->right, node);
-		}
-		else {
-			if (root->left == nullptr and root->right == nullptr) {
-				root = nullptr;
-			}
-			
-		}
-	}
 }

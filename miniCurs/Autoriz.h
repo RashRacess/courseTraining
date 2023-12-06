@@ -4,8 +4,7 @@
 #include "UserInterface.h"
 #include "AdminInterface.h"
 // класс дерево проверить и дописать чего не хватает
-// класс интерфейс админа написать
-// перенести все функции из .h в .сср
+
 // залить на гитхаб
 
 class Autoriz
@@ -23,7 +22,7 @@ public:
 
 		CreateUserTree(UserTree, users, "Users.txt");
 
-		//UserTree.Show();
+		UserTree.Show();
 
 		currentUser = access(&UserTree, *currentUser);
 
@@ -50,6 +49,7 @@ public:
 		}
 		return;
 	}
+
 	void LesGo2() {
 		LinkedList<User>list;
 		User foma1("foma", "12345", "user");

@@ -1,3 +1,6 @@
 google larry 228 rechitskaya 4
 apple timmy 911 california 7
 microsoft bill 777 vashington 5
+amazon bezos 456 oktyabpb 13
+facebook mark 987 oklahoma 51
+spaceX ilon 123 moskva 69
