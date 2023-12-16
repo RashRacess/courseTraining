@@ -1,0 +1,6 @@
+|          Amazon |           Jeff_Bezos |             456 |             oktyabpb |         13 |
+|           Apple |             Tim_Cook |             911 |           california |          7 |
+|        Facebook |      Mark_Zhukerberg |             987 |             oklahoma |         51 |
+|          Google |         Larry_Freman |             228 |          rechitskaya |          4 |
+|       Microsoft |           Bill_Gates |             777 |           vashington |          5 |
+|          SpaceX |            Ilon_Mask |             123 |               moskva |         69 |

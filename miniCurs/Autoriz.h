@@ -11,13 +11,14 @@ class Autoriz
 {
 public:
 	void LesGo() {
+		system("color 03");
 		UserInterface personInterface;
 		AdminInterface adminInterface;
 
 		fstream users;
 		Tree<User> UserTree; //дерево пользователей
 		User* currentUser = new User();
-
+		
 		Admin* admin = new Admin();
 
 		CreateUserTree(UserTree, users, "Users.txt");

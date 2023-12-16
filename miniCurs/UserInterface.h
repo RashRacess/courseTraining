@@ -26,12 +26,14 @@ public:
 			{
 			case 1:
 				cout << "you choosed showing your profile" << endl;
-				user.ShowUser();
+				HumanUserInference();
+				cout << user << endl;
 				showAndWAit();
 				break;
 
 			case 2:
 				cout << "you choosed showing book of recording" << endl;
+				HumanRecordInference();
 				RecordTree.Show();
 				showAndWAit();
 				break;
@@ -40,7 +42,9 @@ public:
 				cout << "Enter name of company: ";
 				cin.ignore(cin.rdbuf()->in_avail());
 				getline(cin, nameOfCompany);
-				RecordTree.TreeSearchString(nameOfCompany);
+				HumanRecordInference();
+				ShowRecordWithCompanyName(RecordTree.GetRoot(), nameOfCompany);
+				cout << string(96, '-');
 				showAndWAit();
 				break;
 

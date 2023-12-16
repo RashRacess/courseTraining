@@ -1,7 +1,5 @@
 #pragma once
 #include "User.h"
-//#include "Tree.h"
-//#include "Record.h"
 using namespace std;
 
 class Admin : public User

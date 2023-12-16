@@ -3,39 +3,83 @@
 #include <fstream>
 using namespace std;
 
+template<typename T>
+class Node {
+public:
+	T data;
+	Node<T>* left;
+	Node<T>* right;
+
+	Node(const T& value) : data{ value }, left{ nullptr }, right{ nullptr } {}
+};
+
 template <typename T>
 class Tree {
 private:
-	struct Node {
-		T data;
-		Node* left;
-		Node* right;
 
-		Node(const T& value) : data{ value }, left{ nullptr }, right{ nullptr } {}
-	};
+	void InsertNode(Node<T>*& root, const T value);
 
-	Node* root;
+	void ShowTree(Node<T>* root);
 
-	void InsertNode(Node* root, T& value);
+	void DeleteTree(Node<T>* root);
 
-	void ShowTree(Node* root);
+	T* SearchInTree(Node<T>* root, const T value);
 
-	void DeleteTree(Node* root);
+	void RecordTreeFile(Node<T>* root, fstream& file);
 
-	T* SearchInTree(Node* root, T& value);
+	Node<T>* removeNode(Node<T>* node, const T value) {
+		if (node == nullptr) {
+			return nullptr;
+		}
 
-	void RecordTreeFile(Node* root, fstream &file);
+		if (value < node->data) {
+			node->left = removeNode(node->left, value);
+		}
+		else if (value > node->data) {
+			node->right = removeNode(node->right, value);
+		}
+		else {
+			if (node->left == nullptr) {
+				Node<T>* temp = node->right;
+				delete node;
+				return temp;
+			}
+			else if (node->right == nullptr) {
+				Node<T>* temp = node->left;
+				delete node;
+				return temp;
+			}
 
-	void SearchStringInTree(Node* root, string str);
+			Node<T>* temp = findMin(node->right);
+			node->data = temp->data;
+			node->right = removeNode(node->right, temp->data);
+		}
 
+		return node;
+	}
 
+	Node<T>* findMin(Node<T>* node) {
+		while (node->left != nullptr) {
+			node = node->left;
+		}
+		return node;
+	}
 
+	Node<T>* root;
+	int size;
 public:
-	Tree() : root{ nullptr } {}
 
-	void Insert(T& node) {
-		if (root == nullptr)
-			root = new Node(node);
+	Tree() : root{ nullptr }, size{ 0 } {}
+
+	Node<T>* GetRoot() {
+		return root;
+	}
+
+	void Insert(const T node) {
+		if (root == nullptr){
+			root = new Node<T>(node);
+			size++;
+		}
 		else {
 			InsertNode(root, node);
 		}
@@ -46,38 +90,47 @@ public:
 	}
 
 	void Delete() {
+		size = 0;
 		DeleteTree(root);
 	}
 
-	T* Search(T& node) {
+	T* Search(const T node) {
 		return SearchInTree(root, node);
 	}
 
-	void RecordTreeToFile(fstream &file, string name) {
+	void RecordTreeToFile(fstream& file, string name) {
 		file.open(name, std::ios::out);
 		if (!file.is_open()) return;
 		RecordTreeFile(root, file);
 		file.close();
 	}
 
-	void TreeSearchString(string str) {
-		SearchStringInTree(root, str);
+	void DeleteNode(const T node) {
+		size--;
+		removeNode(root, node);
+	}
+
+	int GetSize() {
+		return size;
 	}
 };
 
 template <typename T>
-void Tree<T>::InsertNode(Node* root, T& value) {
+void Tree<T>::InsertNode(Node<T>*& root, const T value) {
 	if (value < root->data) {
 		if (root->left == nullptr) {
-			root->left = new Node(value);
+			root->left = new Node<T>(value);
+			size++;
 		}
 		else {
 			InsertNode(root->left, value);
 		}
 	}
 	else if (value > root->data) {
-		if (root->right == nullptr)
-			root->right = new Node(value);
+		if (root->right == nullptr){
+			root->right = new Node<T>(value);
+			size++;
+		}
 		else {
 			InsertNode(root->right, value);
 		}
@@ -85,7 +138,7 @@ void Tree<T>::InsertNode(Node* root, T& value) {
 }
 
 template<typename T>
-void Tree<T>::ShowTree(Node* root) {
+void Tree<T>::ShowTree(Node<T>* root) {
 	if (root != nullptr) {
 		ShowTree(root->left);
 		cout << root->data << endl;
@@ -94,7 +147,7 @@ void Tree<T>::ShowTree(Node* root) {
 }
 
 template<typename T>
-void Tree<T>::DeleteTree(Node* root) {
+void Tree<T>::DeleteTree(Node<T>* root) {
 	if (root) {
 		DeleteTree(root->left);
 		DeleteTree(root->right);
@@ -103,7 +156,7 @@ void Tree<T>::DeleteTree(Node* root) {
 }
 
 template<typename T>
-T* Tree<T>::SearchInTree(Node* root, T& node) {
+T* Tree<T>::SearchInTree(Node<T>* root, const T node) {
 	if (!root) {
 		return nullptr;
 	}
@@ -124,8 +177,8 @@ T* Tree<T>::SearchInTree(Node* root, T& node) {
 }
 
 template<typename T>
-void Tree<T>::RecordTreeFile(Node* root, fstream &file) {
- 	if (!root) {
+void Tree<T>::RecordTreeFile(Node<T>* root, fstream& file) {
+	if (!root) {
 		return;
 	}
 	else {
@@ -133,27 +186,4 @@ void Tree<T>::RecordTreeFile(Node* root, fstream &file) {
 		file << root->data << endl;
 		RecordTreeFile(root->right, file);
 	}
-}
-
-template<typename T>
-void Tree<T>::SearchStringInTree(Node* root, string str) {
-	if (!root) {
-		return;
-	}
-	else {
-		if (root->data == str) {
-			cout << &root->data << endl;
-			SearchStringInTree(root->left, str);
-			SearchStringInTree(root->right, str);
-		}
-
-		if (root->data > str) {
-			SearchStringInTree(root->left, str);
-		}
-
-		if (root->data < str) {
-			SearchStringInTree(root->right, str);
-		}
-	}
-	return;
 }

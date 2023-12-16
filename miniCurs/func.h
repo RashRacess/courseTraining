@@ -60,8 +60,11 @@ void HumanRecordInference();
 Admin& copirovanie(const User& user);
 
 void showAndWAit();
-//
-//template<typename T>
-//void RecordTreeToFile(Tree<T> *node, fstream file, string nameOfFile) {
-//
-//}
+
+void ShowRecordWithStreetName(Node<Record>* root, string str);
+
+void ShowRecordWithCompanyName(Node<Record>* root, string str);
+
+void ShowRecordWithAgent(Node<Record>* root, string str);
+
+void ShowUsersWithNicks(Node<User>* root, string name);

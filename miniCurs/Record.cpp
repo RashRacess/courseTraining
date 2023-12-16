@@ -48,19 +48,18 @@ bool Record::operator==(const Record& rec) const
 
 bool Record::operator<(const string& str) const
 {
-	return this->_companyName < str;
+	return this->_agent < str;
 }
 
 bool Record::operator>(const string& str) const
 {
-	return this->_companyName > str;
+	return this->_agent > str;
 }
 
 bool Record::operator==(const string& str) const
 {
-	return this->_companyName == str;
+	return this->GetComName().find(str) != std::string::npos;
 }
-
 
 string Record::GetComName() const
 {
